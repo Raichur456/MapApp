@@ -17,6 +17,7 @@ struct LocationsView: View {
     var body: some View {
         ZStack {
             Map(coordinateRegion : $mapRegion)
+                .ignoresSafeArea()
         }
     }
 }
