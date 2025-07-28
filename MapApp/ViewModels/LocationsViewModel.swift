@@ -12,7 +12,11 @@ import SwiftUI
 class LocationsViewModel: ObservableObject {
     // Loaded Licatioins
     @Published var locations: [Location]
-    @Published var mapLocation: Location
+    @Published var mapLocation: Location {
+        didSet {
+            updateMapRegion(location: mapLocation)
+        }
+    }
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     init() {
