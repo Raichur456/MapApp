@@ -36,20 +36,26 @@ struct LocationsView: View {
 extension LocationsView {
     private var header : some View {
         VStack {
-            Text(vm.mapLocation.name + ", " + vm.mapLocation.cityName)
-                .font(.title2)
-                .fontWeight(.black)
-                .foregroundColor(.primary)
-                .frame(height:55)
-                .frame(maxWidth: .infinity)
-                .background(Color.gray)
-                .overlay(alignment: .leading) {
-                    Image(systemName: "arrow.down")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                        .padding()
-                }
-            LocationsListView()
+            Button(action: vm.toggleLocationsList) {
+                Text(vm.mapLocation.name + ", " + vm.mapLocation.cityName)
+                    .font(.title2)
+                    .fontWeight(.black)
+                    .foregroundColor(.primary)
+                    .frame(height:55)
+                    .frame(maxWidth: .infinity)
+                    .animation(.none, value : vm.mapLocation)
+                    .background(Color.gray)
+                    .overlay(alignment: .leading) {
+                        Image(systemName: "arrow.down")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                            .padding()
+                            .rotationEffect(Angle(degrees: vm.showLocationList ? 180 : 0))
+                    }
+            }
+            if vm.showLocationList {
+                LocationsListView()
+            }
         }
         .background(.thickMaterial)
         .cornerRadius(10)
