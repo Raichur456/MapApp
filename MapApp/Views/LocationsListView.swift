@@ -15,6 +15,7 @@ struct LocationsListView: View {
                 listRowView(location:location)
             }
         }
+        .listStyle(PlainListStyle())
     }
 }
 

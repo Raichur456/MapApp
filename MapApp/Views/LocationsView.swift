@@ -42,13 +42,14 @@ extension LocationsView {
                 .foregroundColor(.primary)
                 .frame(height:55)
                 .frame(maxWidth: .infinity)
-                .background(Color.red)
+                .background(Color.gray)
                 .overlay(alignment: .leading) {
                     Image(systemName: "arrow.down")
                         .font(.headline)
                         .foregroundColor(.primary)
                         .padding()
                 }
+            LocationsListView()
         }
         .background(.thickMaterial)
         .cornerRadius(10)
