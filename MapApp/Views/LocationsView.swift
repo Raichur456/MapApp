@@ -7,15 +7,10 @@
 
 import SwiftUI
 
-class LocationsViewModel: ObservableObject {
-    @Published var locations: [Location]
-    init() {
-        let locations = LocationsDataService.locations
-        self.locations = locations
-    }
-}
+
 struct LocationsView: View {
-    @StateObject private var vm = LocationsViewModel()
+   
+@EnvironmentObject private var vm : LocationsViewModel
     var body: some View {
         List {
             ForEach(vm.locations) {
@@ -28,4 +23,5 @@ struct LocationsView: View {
 
 #Preview {
     LocationsView()
+        .environmentObject(LocationsViewModel())
 }

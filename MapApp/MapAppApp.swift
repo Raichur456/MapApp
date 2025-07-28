@@ -10,23 +10,11 @@ import SwiftData
 
 @main
 struct MapAppApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    @StateObject private var vm = LocationsViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LocationsView()
+                .environmentObject(vm)
         }
-        .modelContainer(sharedModelContainer)
     }
 }
